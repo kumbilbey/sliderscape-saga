@@ -207,7 +207,12 @@
             localStorage.setItem('gameState', JSON.stringify(gameState));
             alert('Game saved successfully!');
         });
-
+retry.addEventListener('click', () => {
+    generateSolvablePuzzle();
+    render();
+    resetTimer();
+    startTimer();
+});
          const size = 3;
         let positions = Array.from({ length: size * size }, (_, i) => i);
 
