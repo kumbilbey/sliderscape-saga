@@ -190,6 +190,13 @@
                 alert('No saved game found.');
             }
         });
+	    
+	    retry.addEventListener('click', () => {
+    generateSolvablePuzzle();
+    render();
+    resetTimer();
+    startTimer();
+});
 
         previous.addEventListener('click', () => {
             const gameState = {
