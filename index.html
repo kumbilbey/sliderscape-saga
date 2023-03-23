@@ -55,6 +55,19 @@
     text-shadow: 1px 1px 2px #000
         }
 
+        .load {
+            font-family: 'Rubik Iso', cursive;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-shadow: 1px 1px 2px #000;
+    margin-top: 10px;
+        }
+
         .piece {
             width: 200px;
             height: 200px;
@@ -86,6 +99,7 @@
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
+           
             display: none;
         }
 
@@ -120,13 +134,14 @@
     <div class="homepage">
         SLIDESCAPE SAGA
         <div class="start">START</div>
+        <div class="load">LOAD</div>
     </div>
         <div class="game" style="display: none;">
                         <div class="grid"></div>
             <div class="bravo">BRAVO!</div>
             <div class="retry">Retry</div>
             <div class="next">Next</div>
-            <div class="previous">Previous</div>
+            <div class="previous">Save</div>
             <div class="timer">00:00</div>
             <div class="scoreboard">Total Time: 00:00</div>
             <div class="thanks" style="display: none;">THANKS FOR PLAYING!</div>
@@ -136,6 +151,7 @@
     <script>
         const homepage = document.querySelector('.homepage');
         const startButton = document.querySelector('.start');
+        const loadButton = document.querySelector('.load');
         const game = document.querySelector('.game');
         const grid = document.querySelector('.grid');
         const bravo = document.querySelector('.bravo');
@@ -151,19 +167,41 @@
             startTimer();
         });
 
-        previous.addEventListener('click', () => {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
+        loadButton.addEventListener('click', () => {
+            const gameState = localStorage.getItem('gameState');
+            if (gameState) {
+                const {
+                    positions: loadedPositions,
+                    currentImageIndex: loadedCurrentImageIndex,
+                    totalDuration: loadedTotalDuration,
+                } = JSON.parse(gameState);
+
+                positions = loadedPositions;
+                currentImageIndex = loadedCurrentImageIndex;
+                totalDuration = loadedTotalDuration;
+
+                updateScoreboard();
+                render();
+
+                homepage.style.display = 'none';
+                game.style.display = 'block';
+                startTimer();
             } else {
-                currentImageIndex = imageUrls.length - 1;
+                alert('No saved game found.');
             }
-            generateSolvablePuzzle();
-            render();
-            resetTimer();
-            startTimer();
         });
 
-        const size = 3;
+        previous.addEventListener('click', () => {
+            const gameState = {
+                positions,
+                currentImageIndex,
+                totalDuration,
+            };
+            localStorage.setItem('gameState', JSON.stringify(gameState));
+            alert('Game saved successfully!');
+        });
+
+         const size = 3;
         let positions = Array.from({ length: size * size }, (_, i) => i);
 
         const imageUrls = [
@@ -339,4 +377,3 @@
     </script>
 </body>
 </html>
-
