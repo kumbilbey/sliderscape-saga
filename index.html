@@ -127,7 +127,8 @@
         }
 
         /* Media queries for smaller screens */
-        @media (max-width: 767px) {
+       /* Media queries for smaller screens */
+@media (max-width: 767px) {
     .homepage {
         font-size: 48px;
     }
@@ -143,30 +144,27 @@
         grid-template-rows: repeat(3, 100px);
     }
 
-    /* ... rest of your media query styles */
+    .bravo {
+        font-size: 24px;
+    }
+
+    .next, .retry, .previous {
+        font-size: 16px;
+    }
+
+    .timer {
+        font-size: 18px;
+    }
+
+    .thanks {
+        font-size: 24px;
+    }
+
+    .scoreboard {
+        font-size: 18px;
+    }
 }
 
-          
-            .bravo {
-                font-size: 24px;
-            }
-          
-            .next, .retry, .previous {
-                font-size: 16px;
-            }
-          
-            .timer {
-                font-size: 18px;
-            }
-          
-            .thanks {
-                font-size: 24px;
-            }
-          
-            .scoreboard {
-                font-size: 18px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -202,10 +200,13 @@
         const scoreboard = document.querySelector('.scoreboard');
 
         startButton.addEventListener('click', () => {
-            homepage.style.display = 'none';
-            game.style.display = 'block';
-            startTimer();
-        });
+    homepage.style.display = 'none';
+    game.style.display = 'block';
+    generateSolvablePuzzle(); // Add this line
+    render(); // Add this line
+    startTimer();
+});
+
 
         loadButton.addEventListener('click', () => {
             const gameState = localStorage.getItem('gameState');
