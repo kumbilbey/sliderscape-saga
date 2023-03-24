@@ -199,15 +199,14 @@
         const timerElement = document.querySelector('.timer');
         const scoreboard = document.querySelector('.scoreboard');
 
-       startButton.addEventListener('click', () => {
+      startButton.addEventListener('click', () => {
     homepage.style.display = 'none';
     game.style.display = 'block';
-    if (!positions.every((pos, index) => pos === index)) {
-        generateSolvablePuzzle();
-        render();
-    }
+    generateSolvablePuzzle();
+    render();
     startTimer();
 });
+
 
 
 
@@ -429,8 +428,7 @@ retry.addEventListener('click', () => {
             }
         }
 
-        generateSolvablePuzzle();
-        render();
+      
 
         grid.addEventListener('click', handleClick);
         next.addEventListener('click', handleNext);
