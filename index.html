@@ -335,9 +335,10 @@ retry.addEventListener('click', () => {
             return positions.every((pos, index) => pos === index);
         }
 
-       function render() {
+      function render() {
     const imageUrl = imageUrls[currentImageIndex];
-    const pieceSize = window.innerWidth <= 767 ? 100 : 200;
+    const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const pieceSize = viewportWidth <= 767 ? 100 : 200;
     const backgroundSize = pieceSize * 3;
 
     grid.innerHTML = positions
@@ -366,7 +367,6 @@ retry.addEventListener('click', () => {
         previous.style.display = 'none';
     }
 }
-
 
         function handleClick(event) {
             const piece = event.target;
