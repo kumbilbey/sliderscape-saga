@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slidescape Saga</title>
-    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -35,7 +34,7 @@
         }
 
         .logo {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Rubik Iso', cursive;
             font-size: 72px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -44,7 +43,7 @@
         }
 
         .start {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Rubik Iso', cursive;
     font-size: 32px;
     font-weight: bold;
     cursor: pointer;
@@ -55,7 +54,7 @@
     text-shadow: 1px 1px 2px #000
         }
 
-        .load {
+   .load {
             font-family: 'Rubik', sans-serif;
     font-size: 32px;
     font-weight: bold;
@@ -67,7 +66,6 @@
     text-shadow: 1px 1px 2px #000;
     margin-top: 10px;
         }
-
         .piece {
             width: 200px;
             height: 200px;
@@ -99,7 +97,6 @@
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
-           
             display: none;
         }
 
@@ -117,7 +114,7 @@
             color: #4CAF50;
             text-shadow: 2px 2px 0 #FF4500, 4px 4px 0 #FFD700;
             margin-top: 20px;
-            display: none;
+                        display: none;
         }
 
         .scoreboard {
@@ -127,10 +124,46 @@
             color: #FF4500;
         }
 
+        /* Media queries for smaller screens */
+        @media (max-width: 767px) {
+            .homepage {
+                font-size: 48px;
+            }
+          
+            .piece {
+                width: 100px;
+                height: 100px;
+            }
+          
+            .grid {
+                grid-template-columns: repeat(3, 100px);
+                grid-template-rows: repeat(3, 100px);
+            }
+          
+            .bravo {
+                font-size: 24px;
+            }
+          
+            .next, .retry, .previous {
+                font-size: 16px;
+            }
+          
+            .timer {
+                font-size: 18px;
+            }
+          
+            .thanks {
+                font-size: 24px;
+            }
+          
+            .scoreboard {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
-   <div class="container">
+  <div class="container">
     <div class="homepage">
         SLIDESCAPE SAGA
         <div class="start">START</div>
