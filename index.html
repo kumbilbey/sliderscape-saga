@@ -335,34 +335,38 @@ retry.addEventListener('click', () => {
             return positions.every((pos, index) => pos === index);
         }
 
-        function render() {
-            const imageUrl = imageUrls[currentImageIndex];
-            grid.innerHTML = positions
-                .map(
-                    (pos, index) =>
-                        pos !== 0
-                            ? `<div class="piece" style="grid-row: ${
-                                  Math.floor(index / 3) + 1
-                              }; grid-column: ${
-                                  (index % 3) + 1
-                              }; background-image: url('${imageUrl}'); background-position: ${-(pos % 3) * 200}px ${-Math.floor(pos / 3) * 200}px" data-index="${index}"></div>`
-                            : ''
-                )
-                .join('');
+       function render() {
+    const imageUrl = imageUrls[currentImageIndex];
+    const pieceSize = window.innerWidth <= 767 ? 100 : 200;
+    const backgroundSize = pieceSize * 3;
 
-            if (isSolved()) {
-                bravo.style.display = 'block';
-                next.style.display = 'block';
-                retry.style.display = 'block';
-                previous.style.display = 'block';
-                stopTimer();
-            } else {
-                bravo.style.display = 'none';
-                next.style.display = 'none';
-                retry.style.display = 'none';
-                previous.style.display = 'none';
-            }
-        }
+    grid.innerHTML = positions
+        .map(
+            (pos, index) =>
+                pos !== 0
+                    ? `<div class="piece" style="grid-row: ${
+                          Math.floor(index / 3) + 1
+                      }; grid-column: ${
+                          (index % 3) + 1
+                      }; background-image: url('${imageUrl}'); background-position: ${-(pos % 3) * pieceSize}px ${-Math.floor(pos / 3) * pieceSize}px; background-size: ${backgroundSize}px ${backgroundSize}px" data-index="${index}"></div>`
+                    : ''
+        )
+        .join('');
+
+    if (isSolved()) {
+        bravo.style.display = 'block';
+        next.style.display = 'block';
+        retry.style.display = 'block';
+        previous.style.display = 'block';
+        stopTimer();
+    } else {
+        bravo.style.display = 'none';
+        next.style.display = 'none';
+        retry.style.display = 'none';
+        previous.style.display = 'none';
+    }
+}
+
 
         function handleClick(event) {
             const piece = event.target;
