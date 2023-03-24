@@ -128,20 +128,24 @@
 
         /* Media queries for smaller screens */
         @media (max-width: 767px) {
-            .homepage {
-                font-size: 48px;
-            }
-          
-            .piece {
-                width: 100px;
-                height: 100px;
-		background-size: cover;
-            }
-          
-            .grid {
-                grid-template-columns: repeat(3, 100px);
-                grid-template-rows: repeat(3, 100px);
-            }
+    .homepage {
+        font-size: 48px;
+    }
+
+    .piece {
+        width: 100px;
+        height: 100px;
+        background-size: 300px 300px; /* Update the background-size here */
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+    }
+
+    /* ... rest of your media query styles */
+}
+
           
             .bravo {
                 font-size: 24px;
